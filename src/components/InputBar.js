@@ -27,7 +27,7 @@ class InputBar extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <div className="input-bar">
         <form onSubmit={this.onSubmit}>

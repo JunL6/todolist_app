@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <div className="middle-lane">
         <InputBar />
-        {/* <TodoList /> */}
+        <TodoList />
       </div>
     );
   }
