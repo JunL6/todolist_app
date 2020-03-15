@@ -1,4 +1,4 @@
-import { ADD_TODOITEM } from "./types";
+import { ADD_TODOITEM, TOGGLE_TODOITEM } from "./types";
 
 let nextTodoId = 0;
 export const addTodoItem = (text, timestamp) => {
@@ -8,9 +8,16 @@ export const addTodoItem = (text, timestamp) => {
       id: nextTodoId++,
       text,
       timeCreated: timestamp,
-      completed: false,
+      isCompleted: false,
       group: null
     }
+  };
+};
+
+export const toggle_todoItem = id => {
+  return {
+    type: TOGGLE_TODOITEM,
+    payload: id
   };
 };
 

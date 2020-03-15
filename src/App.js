@@ -6,9 +6,12 @@ import TodoList from "./components/TodoList";
 class App extends React.Component {
   render() {
     return (
-      <div className="middle-lane">
-        <InputBar />
-        <TodoList />
+      <div className="container">
+        <div className="left-lane"></div>
+        <div className="middle-lane">
+          <InputBar />
+          <TodoList />
+        </div>
       </div>
     );
   }
