@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import InputBar from "./components/InputBar";
 import TodoList from "./components/TodoList";
+import StatusToggle from "./components/StatusToggle";
 
 class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class App extends React.Component {
         <div className="left-lane"></div>
         <div className="middle-lane">
           <InputBar />
+          <StatusToggle />
           <TodoList />
         </div>
       </div>

@@ -1,6 +1,8 @@
-import { ADD_TODOITEM, TOGGLE_TODOITEM } from "./types";
+import { ADD_TODOITEM, TOGGLE_TODOITEM, SWITCH_VISIBILITY } from "./types";
 
 let nextTodoId = 0;
+const INITIAL_GROUP = "g1";
+
 export const addTodoItem = (text, timestamp) => {
   return {
     type: ADD_TODOITEM,
@@ -9,16 +11,22 @@ export const addTodoItem = (text, timestamp) => {
       text,
       timeCreated: timestamp,
       isCompleted: false,
-      group: null
+      group: INITIAL_GROUP
     }
   };
 };
 
-export const toggle_todoItem = id => {
+export const toggleTodoItem = id => {
   return {
     type: TOGGLE_TODOITEM,
     payload: id
   };
 };
+
+export const switchVisibility = visibility => {
+  return { type: SWITCH_VISIBILITY, payload: visibility };
+};
+
+// export const visibility
 
 // export const toggleTodoItem

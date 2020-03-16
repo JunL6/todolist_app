@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggle_todoItem } from "../actions";
+import { toggleTodoItem } from "../actions";
+import getTodoListFromSelection from "../utilty/getTodoList";
 
 class TodoList extends React.Component {
   renderList(list) {
@@ -14,7 +15,7 @@ class TodoList extends React.Component {
             : "todo-list_li--incomplete"
         }
         onClick={() => {
-          this.props.toggle_todoItem(item.id);
+          this.props.toggleTodoItem(item.id);
         }}
       >
         {item.text}
@@ -24,17 +25,25 @@ class TodoList extends React.Component {
   render() {
     return (
       <div className="todo-list">
-        {console.log("hello")}
-        <ul>{this.renderList(this.props.todoList)}</ul>
+        {/* {getTodoListFromSelection(this.props.todoList, this.props.visibility, this.props.group)} */}
+        <ul>
+          {this.renderList(
+            getTodoListFromSelection(
+              this.props.todoList,
+              this.props.visibility,
+              "g1"
+            )
+          )}
+        </ul>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = { toggle_todoItem };
+const mapDispatchToProps = { toggleTodoItem };
 
 function mapStateToProps(state) {
-  return { todoList: state.todoList };
+  return { todoList: state.todoList, visibility: state.visibility };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
