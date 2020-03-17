@@ -22,8 +22,9 @@ class InputBar extends React.Component {
       return;
     }
     let timestamp = Date.now();
-    this.props.addTodoItem(text, timestamp);
+    this.props.addTodoItem(text, timestamp, this.props.groupSelected);
     this.setState({ text: "" });
+    console.log("add to do: " + text);
   }
 
   render() {
@@ -44,8 +45,12 @@ class InputBar extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  addTodoItem
-};
+const mapDispatchToProps = { addTodoItem };
 
-export default connect(null, mapDispatchToProps)(InputBar);
+function mapStateToProps(state) {
+  return {
+    groupSelected: state.groupSelected
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputBar);

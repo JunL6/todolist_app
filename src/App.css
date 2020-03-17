@@ -20,6 +20,9 @@ body {
   min-width: 240px;
   height: 100vh;
   background-color: #171d3e;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 .middle-lane {
@@ -36,6 +39,52 @@ body {
   align-items: center;
 }
 
+/* Group Selector */
+
+.group-selector {
+  margin: 20px 0 0 40px;
+  color: white;
+}
+
+.group-selector h4 {
+  color: #8489a2;
+}
+
+.group-selector ul {
+  list-style-type: none;
+}
+
+.group-selector li {
+  color: #8489a2;
+}
+
+.group-selector li::before {
+  content: "\2022";
+  color: grey;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.group-selector li:hover {
+  cursor: pointer;
+}
+
+.group-selector_li--selected {
+  color: white !important;
+}
+
+.group-selector_li--selected::before {
+  content: "\2022";
+  color: red !important;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* Input Bar */
 .input-bar {
   padding: 0;
   width: 400px;
@@ -76,6 +125,7 @@ body {
   font-size: 18px;
   padding: 0;
   transform: scale(1.02);
+  box-shadow: 6px 0 4px rgba(26, 25, 25, 0.1);
   /* background-color: rgba(230, 4, 218, 0.596); */
 }
 
@@ -117,6 +167,11 @@ body {
 
 .status-toggle button:focus {
   outline: none;
+}
+
+.status-toggle button:active {
+  transform: scale(1.02);
+  transition-delay: 0;
 }
 
 .status-toggle_button--selected {

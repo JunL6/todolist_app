@@ -27,11 +27,12 @@ class TodoList extends React.Component {
       <div className="todo-list">
         {/* {getTodoListFromSelection(this.props.todoList, this.props.visibility, this.props.group)} */}
         <ul>
+          {console.log(this.props.todoList)}
           {this.renderList(
             getTodoListFromSelection(
               this.props.todoList,
               this.props.visibility,
-              "g1"
+              this.props.groupSelected
             )
           )}
         </ul>
@@ -43,7 +44,11 @@ class TodoList extends React.Component {
 const mapDispatchToProps = { toggleTodoItem };
 
 function mapStateToProps(state) {
-  return { todoList: state.todoList, visibility: state.visibility };
+  return {
+    todoList: state.todoList,
+    visibility: state.visibility,
+    groupSelected: state.groupSelected
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

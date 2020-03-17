@@ -1,20 +1,20 @@
 import { ADD_TODOITEM, TOGGLE_TODOITEM } from "../actions/types";
 
 const INITIALSTATE_TODOLIST = [
-  // {
-  //   id: -1,
-  //   text: "drink water",
-  //   timeCreated: 1584135899914,
-  //   isCompleted: false,
-  //   group: null
-  // },
-  // {
-  //   id: -2,
-  //   text: "wash hands",
-  //   timeCreated: 1584135992855,
-  //   isCompleted: true,
-  //   group: null
-  // }
+  {
+    id: -1,
+    text: "drink water",
+    timeCreated: 1584135899914,
+    isCompleted: false,
+    groupId: -1
+  },
+  {
+    id: -2,
+    text: "wash hands",
+    timeCreated: 1584135992855,
+    isCompleted: true,
+    groupId: -2
+  }
 ];
 
 export default function(todoList = INITIALSTATE_TODOLIST, action) {
@@ -22,8 +22,6 @@ export default function(todoList = INITIALSTATE_TODOLIST, action) {
     case ADD_TODOITEM:
       return [...todoList, action.payload];
     case TOGGLE_TODOITEM:
-      // console.log(todoList.find(todo => todo.id === action.payload));
-      // return [...todoList, todoList.find(todo => todo.id === action.payload)];
       let newTodoList = todoList.map(
         todo =>
           todo.id === action.payload
