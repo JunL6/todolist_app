@@ -1,4 +1,4 @@
-import { STATUS_ALL } from "../utilty/const";
+import { STATUS_ALL } from "../utils/const";
 import { SWITCH_VISIBILITY } from "../actions/types";
 
 export default function(visibility = STATUS_ALL, action) {

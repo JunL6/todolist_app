@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { toggleTodoItem } from "../actions";
-import getTodoListFromSelection from "../utilty/getTodoList";
+import getTodoListFromSelection from "../utils/getTodoList";
 
 class TodoList extends React.Component {
   renderList(list) {

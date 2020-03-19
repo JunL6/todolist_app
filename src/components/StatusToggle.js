@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { switchVisibility } from "../actions";
-import { STATUS_ALL, STATUS_TODO, STATUS_DONE } from "../utilty/const";
+import { STATUS_ALL, STATUS_TODO, STATUS_DONE } from "../utils/const";
 
 const BUTTON_HOVER = "status-toggle";
 

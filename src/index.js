@@ -6,6 +6,9 @@ import App from "./App";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
+// import Modal from "react-modal";
+
+// Modal.setAppElement("#root");
 
 ReactDOM.render(
   <Provider store={createStore(reducer)}>
