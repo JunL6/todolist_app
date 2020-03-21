@@ -27,7 +27,6 @@ class StatusToggle extends Component {
   }
 
   render() {
-    console.log(this.props.visibility);
     return (
       <div className="status-toggle">
         {this.renderButton("All", STATUS_ALL)}

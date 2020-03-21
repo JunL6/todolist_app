@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectGroup } from "../actions";
+import { selectGroup, addGroup } from "../actions";
 import CreateGroup from "./CreateGroup";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -8,11 +8,13 @@ Modal.setAppElement("#root");
 class GroupSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isModalOpen: true };
+    this.state = { isModalOpen: true, groupNameInput: "" };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderGroupList = this.renderGroupList.bind(this);
+    this.onGroupNameInputChange = this.onGroupNameInputChange.bind(this);
+    this.onAddNewGroup = this.onAddNewGroup.bind(this);
   }
 
   openModal() {
@@ -44,8 +46,23 @@ class GroupSelector extends React.Component {
     });
   }
 
+  onAddNewGroup() {
+    const newGroupId = this.props.addGroup(this.state.groupNameInput).payload
+      .groupId;
+
+    this.props.selectGroup(newGroupId);
+
+    this.setState({ isModalOpen: false, groupNameInput: "" });
+  }
+
+  onGroupNameInputChange(e) {
+    if (e.target.value) {
+      const text = e.target.value.trim();
+      this.setState({ groupNameInput: text });
+    }
+  }
+
   render() {
-    console.log("group: " + this.props.groupSelected);
     return (
       <div className="group-selector">
         <h4>Group</h4>
@@ -66,12 +83,12 @@ class GroupSelector extends React.Component {
                 X
               </button>
             </header>
-            <form>
+            <form onSubmit={this.onAddNewGroup}>
               <label>Group Name: </label>
-              <input type="text"></input>
+              <input onChange={this.onGroupNameInputChange} type="text"></input>
             </form>
             <footer>
-              <button>Add</button>
+              <button onClick={this.onAddNewGroup}>Add</button>
             </footer>
           </div>
         </Modal>
@@ -87,4 +104,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { selectGroup })(GroupSelector);
+export default connect(mapStateToProps, { selectGroup, addGroup })(
+  GroupSelector
+);

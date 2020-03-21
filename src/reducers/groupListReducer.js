@@ -1,3 +1,5 @@
+import { ADD_GROUP } from "../actions/types";
+
 export default function(
   groupList = [
     { groupName: "Default Group", groupId: -1 },
@@ -9,6 +11,9 @@ export default function(
   action
 ) {
   switch (action.type) {
+    case ADD_GROUP:
+      console.log("here is being executed");
+      return [...groupList, action.payload];
     default:
       return groupList;
   }

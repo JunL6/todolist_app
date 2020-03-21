@@ -3,12 +3,11 @@ import {
   TOGGLE_TODOITEM,
   SWITCH_VISIBILITY,
   SELECT_GROUP,
-  CREATE_GROUP
+  ADD_GROUP
 } from "./types";
 
 let nextTodoId = 0;
-// const INITIAL_GROUPID = -1;
-let nextGroupId = 0;
+let nextGroupId = 1;
 
 export const addTodoItem = (text, timestamp, currentGroupId) => {
   return {
@@ -41,9 +40,9 @@ export const selectGroup = groupId => {
   };
 };
 
-export const createGroup = groupName => {
+export const addGroup = groupName => {
   return {
-    type: CREATE_GROUP,
+    type: ADD_GROUP,
     payload: {
       groupName,
       groupId: nextGroupId++
