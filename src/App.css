@@ -16,6 +16,7 @@ body {
 }
 
 .left-lane {
+  padding-top: 36px;
   flex-grow: 1;
   min-width: 240px;
   height: 100vh;
@@ -42,7 +43,8 @@ body {
 /* Group Selector */
 
 .group-selector {
-  margin: 20px 0 0 40px;
+  align-self: flex-center;
+  margin: 10px 0 0 40px;
   padding: 36px 0;
   width: 280px;
   color: white;
@@ -235,7 +237,6 @@ status toggle
   transform: scale(1.1);
   background-color: #0f235b;
   color: white;
-  font-size: large;
   cursor: pointer;
 }
 
@@ -301,5 +302,6 @@ status toggle
   background-size: 24px;
   text-decoration: line-through;
   /* color: rgba(0, 0, 0, 0.5); */
-  opacity: 0.5;
+  opacity: 0.7;
+  color: grey;
 }
