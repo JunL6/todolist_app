@@ -203,11 +203,11 @@ body {
 
 .input-bar button:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  /* transform: scale(1.2); */
 }
 
 .input-bar button:active {
-  transform: scale(1.02);
+  /* transform: scale(1); */
 }
 
 /** 
@@ -284,7 +284,7 @@ status toggle
 }
 
 .todo-list li:hover {
-  transform: scale(1.2);
+  transform: scale(1.02);
   transition-duration: 0.05s;
   transition-timing-function: ease-in-out;
   cursor: pointer;
