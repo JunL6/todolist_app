@@ -8,7 +8,7 @@ Modal.setAppElement("#root");
 class GroupSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isModalOpen: true, groupNameInput: "" };
+    this.state = { isModalOpen: false, groupNameInput: "" };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -26,7 +26,7 @@ class GroupSelector extends React.Component {
   }
 
   renderGroupList(groupList, currentGroupId) {
-    return groupList.map(group => {
+    return groupList.map((group) => {
       console.log(currentGroupId);
       return (
         <li
@@ -80,7 +80,7 @@ class GroupSelector extends React.Component {
             <header>
               <h3>Add Group</h3>
               <button onClick={() => this.setState({ isModalOpen: false })}>
-                X
+                x
               </button>
             </header>
             <form onSubmit={this.onAddNewGroup}>
@@ -100,7 +100,7 @@ class GroupSelector extends React.Component {
 function mapStateToProps(state) {
   return {
     groupSelected: state.groupSelected,
-    groupList: state.groupList
+    groupList: state.groupList,
   };
 }
 

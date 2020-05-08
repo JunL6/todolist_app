@@ -1,18 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import "./index.css";
-import App from "./App";
 // import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
+import { BrowserRouter, Route } from "react-router-dom";
+import App from "./App";
+import Login from "./components/Login";
 // import Modal from "react-modal";
 
 // Modal.setAppElement("#root");
 
 ReactDOM.render(
   <Provider store={createStore(reducer)}>
-    <App />
+    <BrowserRouter>
+      <Route path="/" exact component={App} />
+      <Route path="/login" component={Login} />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
