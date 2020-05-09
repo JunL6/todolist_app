@@ -3,7 +3,7 @@ import {
   TOGGLE_TODOITEM,
   SWITCH_VISIBILITY,
   SELECT_GROUP,
-  ADD_GROUP
+  ADD_GROUP,
 } from "./types";
 
 let nextTodoId = 0;
@@ -17,35 +17,37 @@ export const addTodoItem = (text, timestamp, currentGroupId) => {
       text,
       timeCreated: timestamp,
       isCompleted: false,
-      groupId: currentGroupId
-    }
+      groupId: currentGroupId,
+    },
   };
 };
 
-export const toggleTodoItem = id => {
+export const toggleTodoItem = (id) => {
   return {
     type: TOGGLE_TODOITEM,
-    payload: id
+    payload: id,
   };
 };
 
-export const switchVisibility = visibility => {
+export const switchVisibility = (visibility) => {
   return { type: SWITCH_VISIBILITY, payload: visibility };
 };
 
-export const selectGroup = groupId => {
+export const selectGroup = (groupId) => {
   return {
     type: SELECT_GROUP,
-    payload: groupId
+    payload: groupId,
   };
 };
 
-export const addGroup = groupName => {
+export const addGroup = (groupName) => {
   return {
     type: ADD_GROUP,
     payload: {
       groupName,
-      groupId: nextGroupId++
-    }
+      groupId: nextGroupId++,
+    },
   };
 };
+
+/* authentication related */

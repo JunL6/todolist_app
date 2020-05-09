@@ -1,15 +1,19 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const URL_SIGNUP = "http://localhost:4000/signup";
 
 class Signup extends React.Component {
   onFormSubmit = (formProps) => {
-    console.log(formProps);
+    // console.log(formProps);
     axios
       .post(URL_SIGNUP, formProps)
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        this.props.history.push("/app");
+      })
       .catch((err) => console.error(err));
   };
 
@@ -17,7 +21,8 @@ class Signup extends React.Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <div>Signup</div>
+        <Link to="/">Todoie</Link>
+        <div>Sign up</div>
         <form onSubmit={handleSubmit(this.onFormSubmit)}>
           <fieldset>
             <label>Email:</label>
@@ -29,6 +34,7 @@ class Signup extends React.Component {
           </fieldset>
           <button>Sign up</button>
         </form>
+        <div>//todo: error message</div>
       </div>
     );
   }
