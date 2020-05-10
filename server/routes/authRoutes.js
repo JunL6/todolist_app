@@ -6,9 +6,16 @@ const User = mongoose.model("User");
 module.exports = (app) => {
   app.post(
     "/login",
-    passport.authenticate("local", { session: false }),
+    (req, res, next) => {
+      console.log(req.body);
+      next();
+    },
+    passport.authenticate("local", {
+      // successRedirect: "/app",
+      // failureRedirect: "/login",
+    }),
     (req, res) => {
-      res.send(req.user);
+      res.send("login success!");
     }
   );
 
@@ -32,5 +39,11 @@ module.exports = (app) => {
         res.send("sign up successful.");
       });
     });
+  });
+
+  app.get("/logout", (req, res) => {
+    req.logout();
+    req.session = null;
+    // res.redirect("/");
   });
 };
