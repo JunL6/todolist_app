@@ -11,12 +11,10 @@ module.exports = (app) => {
       next();
     },
     passport.authenticate("local", {
-      // successRedirect: "/app",
+      successRedirect: "/app", // 为何这句不起作用, 写了这句就不会跳转?
       // failureRedirect: "/login",
     }),
-    (req, res) => {
-      res.send("login success!");
-    }
+    (req, res) => res.send("/") // 为何如果这句没写就不会跳转？
   );
 
   app.post("/signup", (req, res, next) => {

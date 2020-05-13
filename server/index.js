@@ -14,7 +14,8 @@ const app = express();
 
 /* mongoose */
 mongoose
-  .connect("mongodb://localhost/todolist")
+  // .connect("mongodb://localhost/todolist")
+  .connect(keys.mongoURI)
   .then(() => console.log("[LOG] mongoDB connected!"))
   .catch((err) => console.error(err));
 
@@ -27,6 +28,15 @@ app.use(
     keys: keys.cookieKeys,
   })
 );
+
+// app.use(
+//   require("express-session")({
+//     secret: "keyboard cat",
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
+
 /* passport */
 app.use(passport.initialize());
 app.use(passport.session());
