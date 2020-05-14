@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const cors = require("cors");
+const flash = require("connect-flash");
 const keys = require("./config/keys");
 require("./models/User");
 require("./services/passport");
@@ -28,6 +29,11 @@ app.use(
     keys: keys.cookieKeys,
   })
 );
+
+/* flash */
+// app.use(express.cookieParser("keyboard cat"));
+// app.use(express.session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
 
 // app.use(
 //   require("express-session")({

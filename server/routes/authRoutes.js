@@ -6,15 +6,16 @@ const User = mongoose.model("User");
 module.exports = (app) => {
   app.post(
     "/login",
-    (req, res, next) => {
-      console.log(req.body);
-      next();
-    },
-    passport.authenticate("local", {
-      successRedirect: "/app", // 为何这句不起作用, 写了这句就不会跳转?
-      // failureRedirect: "/login",
-    }),
-    (req, res) => res.send("/") // 为何如果这句没写就不会跳转？
+    // (req, res, next) => {
+    //   console.log(req.body);
+    //   next();
+    // },
+    passport.authenticate("local", { failureFlash: true })
+    // (req, res, next) => {
+    //   console.log(req.user);
+    //   // res.redirect("/app");
+    //   // next();
+    // }
   );
 
   app.post("/signup", (req, res, next) => {
