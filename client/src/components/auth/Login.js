@@ -4,12 +4,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const URL_LOGIN = "http://localhost:4000/login";
+// const URL_LOGIN = "/api/login";
 
 class Login extends React.Component {
   onFormSubmit = (formProps) => {
-    // console.log(formProps);
     axios
-      .post(URL_LOGIN, formProps)
+      .post(URL_LOGIN, formProps, { withCredentials: true })
       .then((response) => {
         console.log(response);
         this.props.history.push("/app");

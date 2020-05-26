@@ -43,15 +43,15 @@ app.use(flash());
 //   })
 // );
 
+/* body parser */
+app.use(bodyParser.json({ type: "*/*" }));
+
 /* passport */
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* body parser */
-app.use(bodyParser.json({ type: "*/*" }));
-
 /* cors */
-app.use(cors());
+app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 
 /* route handling */
 require("./routes/authRoutes")(app);

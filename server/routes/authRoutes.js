@@ -6,16 +6,10 @@ const User = mongoose.model("User");
 module.exports = (app) => {
   app.post(
     "/login",
-    // (req, res, next) => {
-    //   console.log(req.body);
-    //   next();
-    // },
-    passport.authenticate("local", { failureFlash: true })
-    // (req, res, next) => {
-    //   console.log(req.user);
-    //   // res.redirect("/app");
-    //   // next();
-    // }
+    passport.authenticate("local", {
+      failureFlash: true,
+    }),
+    (req, res) => res.send("logged in!")
   );
 
   app.post("/signup", (req, res, next) => {

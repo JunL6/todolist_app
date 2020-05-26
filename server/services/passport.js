@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
 passport.serializeUser((user, done) => {
+  console.log(user);
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
@@ -22,11 +23,14 @@ passport.use(
         return done(err);
       }
       if (!user) {
+        console.log(`[LOG] [passport-local] username doesn't exist`);
         return done(null, false);
       }
       if (!user.verifyPassword(password)) {
+        console.log(`[LOG] [passport-local] wrong password`);
         return done(null, false);
       }
+      console.log(`[LOG] [passport-local] username and password correct!`);
       return done(null, user);
     });
   })
