@@ -5,14 +5,17 @@ const User = mongoose.model("User");
 
 module.exports = (app) => {
   app.post(
-    "/login",
+    "/api/login",
     passport.authenticate("local", {
       failureFlash: true,
     }),
-    (req, res) => res.send("logged in!")
+    (req, res) => {
+      console.log(req.user);
+      res.send("logged in!");
+    }
   );
 
-  app.post("/signup", (req, res, next) => {
+  app.post("/api/signup", (req, res, next) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -34,9 +37,13 @@ module.exports = (app) => {
     });
   });
 
-  app.get("/logout", (req, res) => {
+  app.get("/api/logout", (req, res) => {
     req.logout();
     req.session = null;
-    // res.redirect("/");
+    res.send("logged out successful!");
+  });
+
+  app.get("/api/current_user", (req, res) => {
+    res.send(req.user);
   });
 };

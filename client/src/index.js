@@ -1,29 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./index.css";
-// import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers/index";
-import { BrowserRouter, Route } from "react-router-dom";
+
 import App from "./App";
-
-import Login from "./components/auth/Login";
-import Signup from "./components/auth/Signup";
-import StartPage from "./components/StartPage";
-import Main from "./components/Main";
-// import Modal from "react-modal";
-
-// Modal.setAppElement("#root");
 
 ReactDOM.render(
   <Provider store={createStore(reducer)}>
-    <BrowserRouter>
-      <Route path="/" exact component={StartPage} />
-      <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
-      <Route path="/app" component={Main} />
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.getElementById("root")
 );

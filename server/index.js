@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* cors */
-app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
+// app.use(cors({ credentials: true, origin: `http://localhost:3001` }));
 
 /* route handling */
 require("./routes/authRoutes")(app);
