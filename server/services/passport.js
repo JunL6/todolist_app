@@ -1,6 +1,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
+const log = require("../utils/logging");
 
 const User = mongoose.model("User");
 
@@ -22,14 +23,14 @@ passport.use(
         return done(err);
       }
       if (!user) {
-        console.log(`[LOG] [passport-local] username doesn't exist`);
+        log(`[passport-local] username doesn't exist`);
         return done(null, false);
       }
       if (!user.verifyPassword(password)) {
-        console.log(`[LOG] [passport-local] wrong password`);
+        log(`[passport-local] wrong password`);
         return done(null, false);
       }
-      console.log(`[LOG] [passport-local] username and password correct!`);
+      log(`[passport-local] username and password correct!`);
       return done(null, user);
     });
   })

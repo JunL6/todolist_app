@@ -3,7 +3,6 @@ import { Field, reduxForm } from "redux-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-// const URL_LOGIN = "http://localhost:4000/login";
 const URL_LOGIN = "/api/login";
 
 class Login extends React.Component {
