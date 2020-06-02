@@ -26,12 +26,16 @@ passport.use(
         log(`[passport-local] username doesn't exist`);
         return done(null, false);
       }
-      if (!user.verifyPassword(password)) {
-        log(`[passport-local] wrong password`);
-        return done(null, false);
-      }
-      log(`[passport-local] username and password correct!`);
-      return done(null, user);
+      user.verifyPassword(password, (err, isMatch) => {
+        if (err) return log(err);
+        if (!isMatch) {
+          log("[passport-local] wrong password");
+          return done(null, false);
+        } else {
+          log(`[passport-local] username and password correct!`);
+          return done(null, user);
+        }
+      });
     });
   })
 );

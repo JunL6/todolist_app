@@ -1,10 +1,6 @@
 const passport = require("passport");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const log = require("../utils/logging");
-
-/* bcrypt variables */
-const saltRounds = 10;
 
 const User = mongoose.model("User");
 
@@ -13,6 +9,8 @@ module.exports = (app) => {
     "/api/login",
     passport.authenticate("local", {
       failureFlash: true,
+      // failureRedirect: "/",
+      // successRedirect: "/app",
     }),
     (req, res) => {
       console.log(req.user);
@@ -22,6 +20,7 @@ module.exports = (app) => {
 
   app.post("/api/signup", (req, res, next) => {
     const { username, password } = req.body;
+    /* 1. check username and password */
     if (!username || !password) {
       log("sign up: user didn't provide username or password");
       return res
@@ -29,19 +28,17 @@ module.exports = (app) => {
         .send("Please provide both user name and password.");
     }
 
+    /* 2. save user if not exists */
     User.findOne({ username: username }, (err, existingUser) => {
       if (err) return next(err);
       if (existingUser) return res.status(422).send("User name already exists");
 
-      bcrypt.hash(password, saltRounds, (err, hash) => {
+      const newUser = new User({ username, password });
+      newUser.save((err, user) => {
         if (err) return console.error(err);
-
-        const newUser = new User({ username, hash });
-        newUser.save((err, user) => {
-          if (err) return console.error(err);
-          log("new user signed up");
-          res.send("sign up successful.");
-        });
+        log("new user signed up");
+        res.send("sign up successful.");
+        // res.redirect("/app"); //????? why 404
       });
     });
   });
@@ -55,4 +52,8 @@ module.exports = (app) => {
   app.get("/api/current_user", (req, res) => {
     res.send(req.user);
   });
+
+  // app.get("/api/rr", (req, res) => {
+  //   res.redirect("/app");
+  // });
 };

@@ -15,7 +15,9 @@ class Login extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app");
+        if (response.status === 200) {
+          this.props.history.push("/app");
+        }
       })
       .catch((err) => console.error(err));
   };

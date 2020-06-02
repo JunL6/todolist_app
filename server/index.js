@@ -3,9 +3,10 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
-const cors = require("cors");
+// const cors = require("cors");
 const flash = require("connect-flash");
 const keys = require("./config/keys");
+const log = require("./utils/logging");
 require("./models/User");
 require("./services/passport");
 
@@ -17,7 +18,7 @@ const app = express();
 mongoose
   // .connect("mongodb://localhost/todolist")
   .connect(keys.mongoURI)
-  .then(() => console.log("[LOG] mongoDB connected!"))
+  .then(() => log("[LOG] mongoDB connected!"))
   .catch((err) => console.error(err));
 
 /**** middlewares that will be called on every request */
@@ -31,17 +32,7 @@ app.use(
 );
 
 /* flash */
-// app.use(express.cookieParser("keyboard cat"));
-// app.use(express.session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
-
-// app.use(
-//   require("express-session")({
-//     secret: "keyboard cat",
-//     resave: false,
-//     saveUninitialized: false,
-//   })
-// );
 
 /* body parser */
 app.use(bodyParser.json({ type: "*/*" }));
