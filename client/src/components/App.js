@@ -8,6 +8,7 @@ import StartPage from "./StartPage";
 import Main from "./Main";
 import "./App.css";
 import { fetchUser } from "../actions";
+import PrivateRoute from "./PrivateRoute";
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,7 +21,8 @@ class App extends React.Component {
         <Route path="/" exact component={StartPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/app" component={Main} />
+        <PrivateRoute path="/app" component={Main} />
+        {/* <Route path="/app" component={Main} /> */}
       </BrowserRouter>
     );
   }

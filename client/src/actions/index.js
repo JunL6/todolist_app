@@ -7,6 +7,7 @@ import {
   SELECT_GROUP,
   ADD_GROUP,
   FETCH_USER,
+  AUTH_USER,
 } from "./types";
 import { URL_FETCH_USER } from "../config/urls";
 
@@ -21,6 +22,13 @@ export function fetchUser() {
         dispatch({ type: FETCH_USER, payload: response.data.username })
       )
       .catch((err) => console.error(err));
+  };
+}
+
+export function authUser(username) {
+  return {
+    type: AUTH_USER,
+    payload: username,
   };
 }
 

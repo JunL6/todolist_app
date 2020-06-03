@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { URL_LOGIN } from "../../config/urls";
+import { authUser } from "../../actions";
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
   onFormSubmit = (formProps) => {
     axios
       .post(
@@ -15,16 +22,14 @@ class Login extends React.Component {
       )
       .then((response) => {
         console.log(response);
+        this.props.authUser(JSON.parse(response.config.data).username);
         if (response.status === 200) {
+          console.log(this.props.authed);
           this.props.history.push("/app");
         }
       })
       .catch((err) => console.error(err));
   };
-
-  componentDidMount() {
-    axios.get("/api/current_user").then((res) => console.log(res));
-  }
 
   render() {
     const { handleSubmit } = this.props;
@@ -49,4 +54,7 @@ class Login extends React.Component {
   }
 }
 
-export default Login = reduxForm({ form: "login" })(Login);
+const mapStateToProps = (state) => ({ authed: state.authed });
+const mapDispatchToProps = { authUser };
+const connectedComponent = connect(mapStateToProps, mapDispatchToProps)(Login);
+export default reduxForm({ form: "login" })(connectedComponent);

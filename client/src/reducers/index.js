@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   groupSelected: groupSelectedReducer,
   groupList: groupListReducer,
   form: formReducer,
-  auth: authReducer,
+  authed: authReducer,
 });
 
 export default rootReducer;
