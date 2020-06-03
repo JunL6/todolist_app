@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import todoListReducer from "./todoListReducer";
 import visibilityReducer from "./visibilityReducer";
 import groupSelectedReducer from "./groupSelectedReducer";
 import groupListReducer from "./groupListReducer";
-import { reducer as formReducer } from "redux-form";
+import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
   todoList: todoListReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   groupSelected: groupSelectedReducer,
   groupList: groupListReducer,
   form: formReducer,
+  auth: authReducer,
 });
 
 export default rootReducer;

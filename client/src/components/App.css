@@ -292,13 +292,13 @@ status toggle
 }
 
 .todo-list_li--incomplete {
-  background: url("./img/todolist_item--incomplete.svg") 10px center no-repeat;
+  background: url("../img/todolist_item--incomplete.svg") 10px center no-repeat;
   background-size: 24px;
   font-weight: bold;
 }
 
 .todo-list_li--completed {
-  background: url("./img/todolist_item--completed.svg") 10px center no-repeat;
+  background: url("../img/todolist_item--completed.svg") 10px center no-repeat;
   background-size: 24px;
   text-decoration: line-through;
   /* color: rgba(0, 0, 0, 0.5); */

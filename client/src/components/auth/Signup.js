@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const URL_SIGNUP = "/api/signup";
+import { URL_SIGNUP } from "../../config/urls";
 
 class Signup extends React.Component {
   onFormSubmit = (formProps) => {

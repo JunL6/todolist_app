@@ -1,13 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Login from "./components/auth/Login";
-import Signup from "./components/auth/Signup";
-import StartPage from "./components/StartPage";
-import Main from "./components/Main";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import StartPage from "./StartPage";
+import Main from "./Main";
 import "./App.css";
+import { fetchUser } from "../actions";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -20,4 +26,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = { fetchUser };
+
+export default connect(null, mapDispatchToProps)(App);

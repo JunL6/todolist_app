@@ -1,13 +1,28 @@
+import axios from "axios";
+
 import {
   ADD_TODOITEM,
   TOGGLE_TODOITEM,
   SWITCH_VISIBILITY,
   SELECT_GROUP,
   ADD_GROUP,
+  FETCH_USER,
 } from "./types";
+import { URL_FETCH_USER } from "../config/urls";
 
 let nextTodoId = 0;
 let nextGroupId = 1;
+
+export function fetchUser() {
+  return (dispatch) => {
+    axios
+      .get(URL_FETCH_USER)
+      .then((response) =>
+        dispatch({ type: FETCH_USER, payload: response.data.username })
+      )
+      .catch((err) => console.error(err));
+  };
+}
 
 export const addTodoItem = (text, timestamp, currentGroupId) => {
   return {
