@@ -7,7 +7,7 @@ const { Schema } = mongoose;
 const saltRounds = 10;
 
 const TodoSchema = new Schema({
-  groupName: String,
+  groupId: String,
   todoContent: String,
   isDone: Boolean,
   createdTime: Date,

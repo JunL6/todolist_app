@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import { addTodoItem } from "../actions";
 
 class InputBar extends React.Component {
@@ -25,6 +26,16 @@ class InputBar extends React.Component {
     this.props.addTodoItem(text, timestamp, this.props.groupSelected);
     this.setState({ text: "" });
     console.log("add to do: " + text);
+
+    this.insertTodo(text, this.props.groupSelected);
+  }
+
+  insertTodo(todoContent, groupName) {
+    axios.post("/api/insertTodo", {
+      groupName,
+      todoContent,
+      createdTime: new Date(),
+    });
   }
 
   render() {
@@ -49,7 +60,7 @@ const mapDispatchToProps = { addTodoItem };
 
 function mapStateToProps(state) {
   return {
-    groupSelected: state.groupSelected
+    groupSelected: state.groupSelected,
   };
 }
 
