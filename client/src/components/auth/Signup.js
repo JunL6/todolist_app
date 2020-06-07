@@ -1,9 +1,11 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { URL_SIGNUP } from "../../config/urls";
+import { authUser } from "../../actions";
 
 class Signup extends React.Component {
   onFormSubmit = (formProps) => {
@@ -13,6 +15,7 @@ class Signup extends React.Component {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
+          this.props.authUser(formProps.username);
           this.props.history.push("/app");
         }
       })
@@ -42,4 +45,7 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup = reduxForm({ form: "signup" })(Signup);
+const mapDispatchToProps = { authUser };
+const connectedComponent = connect(null, mapDispatchToProps)(Signup);
+
+export default reduxForm({ form: "signup" })(connectedComponent);

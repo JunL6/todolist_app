@@ -13,6 +13,14 @@ class Login extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  onInsertTodo = () => {
+    axios.post("/api/insertTodo", {
+      groupName: "default group",
+      todoContent: "wipe floor",
+      createdTime: new Date(),
+    });
+  };
+
   onFormSubmit = (formProps) => {
     axios
       .post(
@@ -22,8 +30,8 @@ class Login extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.authUser(JSON.parse(response.config.data).username);
         if (response.status === 200) {
+          this.props.authUser(JSON.parse(response.config.data).username);
           console.log(this.props.authed);
           this.props.history.push("/app");
         }
@@ -49,6 +57,8 @@ class Login extends React.Component {
           <button>Log in</button>
         </form>
         <div>//todo: error message</div>
+        <Link to="/app">App</Link>
+        <button onClick={this.onInsertTodo}>insert</button>
       </div>
     );
   }
