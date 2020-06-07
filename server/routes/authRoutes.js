@@ -33,7 +33,16 @@ module.exports = (app) => {
       if (err) return next(err);
       if (existingUser) return res.status(422).send("User name already exists");
 
-      const newUser = new User({ username, password });
+      const newUser = new User({
+        username,
+        password,
+        groups: [
+          {
+            groupName: "Default group",
+            createdTime: new Date(),
+          },
+        ],
+      });
       newUser.save((err, user) => {
         if (err) return console.error(err);
         log("new user signed up");

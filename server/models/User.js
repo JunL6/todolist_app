@@ -13,10 +13,16 @@ const TodoSchema = new Schema({
   createdTime: Date,
 });
 
+const GroupSchema = new Schema({
+  groupName: String,
+  createdTime: Date,
+});
+
 const userSchema = new Schema({
   username: String,
   password: String,
   todos: [TodoSchema],
+  groups: [GroupSchema],
 });
 
 userSchema.pre("save", function (next) {

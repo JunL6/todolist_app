@@ -46,5 +46,6 @@ app.use(passport.session());
 
 /* route handling */
 require("./routes/authRoutes")(app);
+require("./routes/dataRoutes")(app);
 
 app.listen(PORT);
