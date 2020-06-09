@@ -22,20 +22,28 @@ class InputBar extends React.Component {
     if (!text) {
       return;
     }
+
+    // redux part
     let timestamp = Date.now();
     this.props.addTodoItem(text, timestamp, this.props.groupSelected);
     this.setState({ text: "" });
     console.log("add to do: " + text);
 
+    // api part
     this.insertTodo(text, this.props.groupSelected);
   }
 
   insertTodo(todoContent, groupName) {
-    axios.post("/api/insertTodo", {
-      groupName,
-      todoContent,
-      createdTime: new Date(),
-    });
+    axios
+      .post("/api/insertTodo", {
+        groupId: this.props.groupSelected.toString(),
+        groupName,
+        todoContent,
+        createdTime: new Date(),
+      })
+      .then(() => {
+        this.props.setCount((prevCount) => prevCount + 1);
+      });
   }
 
   render() {

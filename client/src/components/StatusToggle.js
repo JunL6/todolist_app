@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { switchVisibility } from "../actions";
 import { STATUS_ALL, STATUS_TODO, STATUS_DONE } from "../utils/const";
 
-const BUTTON_HOVER = "status-toggle";
-
 class StatusToggle extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +37,7 @@ class StatusToggle extends Component {
 
 function mapStateToProps(state) {
   return {
-    visibility: state.visibility
+    visibility: state.visibility,
   };
 }
 

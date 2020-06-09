@@ -6,24 +6,24 @@ const INITIALSTATE_TODOLIST = [
     text: "drink water",
     timeCreated: 1584135899914,
     isCompleted: false,
-    groupId: -1
+    groupId: -1,
   },
   {
     id: -2,
     text: "wash hands",
     timeCreated: 1584135992855,
     isCompleted: true,
-    groupId: -2
-  }
+    groupId: -2,
+  },
 ];
 
-export default function(todoList = INITIALSTATE_TODOLIST, action) {
+export default function (todoList = INITIALSTATE_TODOLIST, action) {
   switch (action.type) {
     case ADD_TODOITEM:
       return [...todoList, action.payload];
     case TOGGLE_TODOITEM:
       let newTodoList = todoList.map(
-        todo =>
+        (todo) =>
           todo.id === action.payload
             ? { ...todo, isCompleted: !todo.isCompleted }
             : todo

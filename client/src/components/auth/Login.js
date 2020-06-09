@@ -13,14 +13,6 @@ class Login extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  onInsertTodo = () => {
-    axios.post("/api/insertTodo", {
-      groupName: "default group",
-      todoContent: "wipe floor",
-      createdTime: new Date(),
-    });
-  };
-
   onFormSubmit = (formProps) => {
     axios
       .post(
@@ -56,9 +48,8 @@ class Login extends React.Component {
           </fieldset>
           <button>Log in</button>
         </form>
-        <div>//todo: error message</div>
+        <div>todo: error message</div>
         <Link to="/app">App</Link>
-        <button onClick={this.onInsertTodo}>insert</button>
       </div>
     );
   }

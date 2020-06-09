@@ -7,14 +7,14 @@ export default function getTodoListFromSelection(
 ) {
   switch (visibility) {
     case STATUS_ALL:
-      return fullList.filter(todo => todo.groupId === currentGroupId);
+      return fullList.filter((todo) => todo.groupId === currentGroupId);
     case STATUS_TODO:
       return fullList.filter(
-        todo => todo.groupId === currentGroupId && todo.isCompleted === false
+        (todo) => todo.groupId === currentGroupId && todo.isCompleted === false
       );
     case STATUS_DONE:
       return fullList.filter(
-        todo => todo.groupId === currentGroupId && todo.isCompleted === true
+        (todo) => todo.groupId === currentGroupId && todo.isCompleted === true
       );
   }
 }

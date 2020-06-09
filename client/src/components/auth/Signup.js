@@ -39,7 +39,7 @@ class Signup extends React.Component {
           </fieldset>
           <button>Sign up</button>
         </form>
-        <div>//todo: error message</div>
+        <div>todo: error message</div>
       </div>
     );
   }

@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import { selectGroup, addGroup } from "../actions";
+import { SelectedGroupContext } from "./SelectedGroupContext";
 import CreateGroup from "./CreateGroup";
+import { URL_ADD_GROUP } from "../config/urls";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 class GroupSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isModalOpen: false, groupNameInput: "" };
+    this.state = {
+      isModalOpen: false,
+      groupNameInput: "",
+      selectedGroupId: null,
+    };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderGroupList = this.renderGroupList.bind(this);
     this.onGroupNameInputChange = this.onGroupNameInputChange.bind(this);
     this.onAddNewGroup = this.onAddNewGroup.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.state.selectedGroupId && this.props.groups.length > 0) {
+      console.log("componentdidmount");
+      this.setState({
+        selectedGroupId: this.props.groups[0]._id,
+      });
+    }
+  }
+  componentDidUpdate() {
+    if (!this.state.selectedGroupId && this.props.groups.length > 0) {
+      console.log("componentdidupdate");
+      this.setState({
+        selectedGroupId: this.props.groups[0]._id,
+      });
+    }
   }
 
   openModal() {
@@ -27,14 +51,12 @@ class GroupSelector extends React.Component {
 
   renderGroupList(groupList, currentGroupId) {
     return groupList.map((group) => {
-      console.log(currentGroupId);
+      console.log(`selected group id: ${currentGroupId}`);
       return (
         <li
-          key={group.groupId}
+          key={group._id}
           className={
-            group.groupId === currentGroupId
-              ? "group-selector_li--selected"
-              : null
+            group._id === currentGroupId ? "group-selector_li--selected" : null
           }
           onClick={() => {
             this.props.selectGroup(group.groupId);
@@ -47,10 +69,23 @@ class GroupSelector extends React.Component {
   }
 
   onAddNewGroup() {
+    //redux
     const newGroupId = this.props.addGroup(this.state.groupNameInput).payload
       .groupId;
 
     this.props.selectGroup(newGroupId);
+
+    // api
+    axios
+      .post(URL_ADD_GROUP, {
+        groupName: this.state.groupNameInput,
+        timeCreated: new Date(),
+      })
+      .then((response) => {
+        console.log(response);
+        this.setState({ selectedGroupId: response.data._id });
+        this.props.setCount((prevCount) => prevCount + 1);
+      });
 
     this.setState({ isModalOpen: false, groupNameInput: "" });
   }
@@ -67,7 +102,7 @@ class GroupSelector extends React.Component {
       <div className="group-selector">
         <h4>Group</h4>
         <ul>
-          {this.renderGroupList(this.props.groupList, this.props.groupSelected)}
+          {this.renderGroupList(this.props.groups, this.state.selectedGroupId)}
         </ul>
         <CreateGroup onHandleClick={this.openModal} />
         <Modal
@@ -97,13 +132,15 @@ class GroupSelector extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    groupSelected: state.groupSelected,
-    groupList: state.groupList,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     groupSelected: state.groupSelected,
+//     groupList: state.groupList,
+//   };
+// }
 
-export default connect(mapStateToProps, { selectGroup, addGroup })(
-  GroupSelector
-);
+// export default connect(mapStateToProps)(
+//   GroupSelector
+// );
+
+export default GroupSelector;

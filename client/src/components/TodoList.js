@@ -1,38 +1,54 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleTodoItem } from "../actions";
+import axios from "axios";
+// import { toggleTodoItem } from "../actions";
+import { URL_UPDATE_TODO } from "../config/urls";
 import getTodoListFromSelection from "../utils/getTodoList";
 
 class TodoList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.OnToggleTodoItem = this.OnToggleTodoItem.bind(this);
+  }
+
+  OnToggleTodoItem(todoId) {
+    axios
+      .post(URL_UPDATE_TODO, {
+        todoId,
+        isToggled: true,
+      })
+      .then((response) => {
+        this.props.setCount((prevCount) => prevCount + 1);
+      });
+  }
+
   renderList(list) {
-    console.log(list);
-    return list.map(item => (
+    return list.map((item) => (
       <li
-        key={item.id}
+        key={item._id}
         className={
           item.isCompleted
             ? "todo-list_li--completed"
             : "todo-list_li--incomplete"
         }
         onClick={() => {
-          this.props.toggleTodoItem(item.id);
+          this.OnToggleTodoItem(item._id);
         }}
       >
-        {item.text}
+        {item.todoContent}
       </li>
     ));
   }
   render() {
     return (
       <div className="todo-list">
-        {/* {getTodoListFromSelection(this.props.todoList, this.props.visibility, this.props.group)} */}
         <ul>
-          {console.log(this.props.todoList)}
           {this.renderList(
             getTodoListFromSelection(
-              this.props.todoList,
+              // this.props.todoList,
+              this.props.list,
               this.props.visibility,
-              this.props.groupSelected
+              this.props.groupSelected.toString()
             )
           )}
         </ul>
@@ -41,14 +57,15 @@ class TodoList extends React.Component {
   }
 }
 
-const mapDispatchToProps = { toggleTodoItem };
+// const mapDispatchToProps = { toggleTodoItem };
 
 function mapStateToProps(state) {
   return {
     todoList: state.todoList,
     visibility: state.visibility,
-    groupSelected: state.groupSelected
+    groupSelected: state.groupSelected,
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+// export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps)(TodoList);
