@@ -39,7 +39,7 @@ module.exports = (app) => {
         groups: [
           {
             groupName: "Default group",
-            createdTime: new Date(),
+            timeCreated: new Date(),
           },
         ],
       });

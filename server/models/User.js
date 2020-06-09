@@ -9,13 +9,13 @@ const saltRounds = 10;
 const TodoSchema = new Schema({
   groupId: String,
   todoContent: String,
-  isDone: Boolean,
-  createdTime: Date,
+  isCompleted: Boolean,
+  timeCreated: Date,
 });
 
 const GroupSchema = new Schema({
   groupName: String,
-  createdTime: Date,
+  timeCreated: Date,
 });
 
 const userSchema = new Schema({

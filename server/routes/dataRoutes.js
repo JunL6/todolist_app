@@ -5,7 +5,7 @@ const User = mongoose.model("User");
 
 module.exports = (app) => {
   app.get("/api/getUserData", (req, res) => {
-    console.log(req.user);
+    log(`[/api/getUserData] ${req.user._id}`);
     if (!req.user) {
       return res.status(401).send("Not authorized");
     } else {
@@ -14,7 +14,6 @@ module.exports = (app) => {
           console.error(err);
           res.send(`error has occured.`);
         } else {
-          console.log(userDoc);
           res.json(userDoc);
         }
       });
@@ -22,21 +21,28 @@ module.exports = (app) => {
   });
 
   app.post("/api/insertTodo", (req, res) => {
-    console.log(req.user);
+    log(`[/api/insertTodo] ${req.user._id}`);
     if (!req.user) {
       return res.status(401).send("Not authorized");
     } else {
-      const { groupName, todoContent, createdTime, ...rest } = req.body;
+      const {
+        groupId,
+        groupName,
+        todoContent,
+        timeCreated,
+        ...rest
+      } = req.body;
       User.findById(req.user._id).exec((err, userDoc) => {
         if (err) {
           console.error(err);
           res.send(`error has occured.`);
         } else {
           userDoc.todos.push({
+            groupId,
             groupName,
             todoContent,
-            isDone: false,
-            createdTime,
+            isCompleted: false,
+            timeCreated,
           });
           userDoc.save((err) => {
             if (err) {
@@ -48,5 +54,77 @@ module.exports = (app) => {
         }
       });
     }
+  });
+
+  app.post("/api/updateTodo", (req, res) => {
+    log(`[update todo] ${req.user._id}`);
+    if (!req.user) {
+      return res.status(401).send("Not authorized");
+    } else {
+      const { todoId, isToggled, newTodoContent } = req.body;
+
+      User.findById(req.user._id).exec((err, userDoc) => {
+        if (err) {
+          console.error(err);
+          return res.send(`error has occurred during DB executions`);
+        }
+
+        if (!todoId) {
+          console.error(`todoId not provided`);
+          return res.send(`todoId not provided`);
+        }
+
+        if (isToggled) {
+          userDoc.todos.forEach((todo) => {
+            if (todo._id.toString() === todoId) {
+              todo.isCompleted = !todo.isCompleted;
+            }
+          });
+        }
+
+        if (newTodoContent) {
+          userDoc.todos.forEach((todo) => {
+            if (todo._id === todoId) {
+              todo.todoContent = newTodoContent;
+            }
+          });
+        }
+
+        // console.log(userDoc.todos);
+        userDoc.save((err) => {
+          if (err) console.error(err);
+          else res.send(`todo item updated!`);
+        });
+      });
+    }
+  });
+
+  app.post("/api/addGroup", (req, res) => {
+    log(`[add group] ${req.user._id}`);
+    if (!req.user) {
+      return res.status(401).send("Not authorized");
+    }
+
+    const { groupName, timeCreated } = req.body;
+    User.findById(req.user._id).exec((err, userDoc) => {
+      if (err) {
+        console.error(err);
+        return res.send(`error has occurred during DB executions`);
+      } else {
+        userDoc.groups.push({
+          groupName,
+          timeCreated,
+        });
+
+        userDoc.save((err, newUserDoc) => {
+          if (err) {
+            console.error(err);
+            return res.send(`error occurred during DB saving`);
+          } else {
+            res.send(newUserDoc.groups[newUserDoc.groups.length - 1]);
+          }
+        });
+      }
+    });
   });
 };
