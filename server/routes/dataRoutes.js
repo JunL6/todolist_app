@@ -25,13 +25,7 @@ module.exports = (app) => {
     if (!req.user) {
       return res.status(401).send("Not authorized");
     } else {
-      const {
-        groupId,
-        groupName,
-        todoContent,
-        timeCreated,
-        ...rest
-      } = req.body;
+      const { groupId, todoContent, timeCreated, ...rest } = req.body;
       User.findById(req.user._id).exec((err, userDoc) => {
         if (err) {
           console.error(err);
@@ -39,7 +33,6 @@ module.exports = (app) => {
         } else {
           userDoc.todos.push({
             groupId,
-            groupName,
             todoContent,
             isCompleted: false,
             timeCreated,
