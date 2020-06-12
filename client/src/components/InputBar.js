@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { addTodoItem } from "../actions";
+import { SelectedGroupContext } from "./SelectedGroupContext";
 
 class InputBar extends React.Component {
   constructor(props) {
@@ -23,21 +24,19 @@ class InputBar extends React.Component {
       return;
     }
 
-    // redux part
-    let timestamp = Date.now();
-    this.props.addTodoItem(text, timestamp, this.props.groupSelected);
+    // api part
+    this.insertTodo(text);
+
+    // empty input bar text
     this.setState({ text: "" });
     console.log("add to do: " + text);
-
-    // api part
-    this.insertTodo(text, this.props.groupSelected);
   }
 
-  insertTodo(todoContent, groupName) {
+  insertTodo(todoContent) {
+    const [selectedGroupId, setSelectedGroupId] = this.context;
     axios
       .post("/api/insertTodo", {
-        groupId: this.props.groupSelected.toString(),
-        groupName,
+        groupId: selectedGroupId,
         todoContent,
         createdTime: new Date(),
       })
@@ -47,7 +46,6 @@ class InputBar extends React.Component {
   }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="input-bar">
         <form onSubmit={this.onSubmit}>
@@ -64,12 +62,5 @@ class InputBar extends React.Component {
   }
 }
 
-const mapDispatchToProps = { addTodoItem };
-
-function mapStateToProps(state) {
-  return {
-    groupSelected: state.groupSelected,
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputBar);
+InputBar.contextType = SelectedGroupContext;
+export default InputBar;

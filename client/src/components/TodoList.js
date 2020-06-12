@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 // import { toggleTodoItem } from "../actions";
+import { SelectedGroupContext } from "./SelectedGroupContext";
 import { URL_UPDATE_TODO } from "../config/urls";
 import getTodoListFromSelection from "../utils/getTodoList";
 
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.OnToggleTodoItem = this.OnToggleTodoItem.bind(this);
-  }
+function TodoList(props) {
+  const [selectedGroupId, setSelectedGroupId] = useContext(
+    SelectedGroupContext
+  );
 
-  OnToggleTodoItem(todoId) {
+  function OnToggleTodoItem(todoId) {
     axios
       .post(URL_UPDATE_TODO, {
         todoId,
         isToggled: true,
       })
       .then((response) => {
-        this.props.setCount((prevCount) => prevCount + 1);
+        props.setCount((prevCount) => prevCount + 1);
       });
   }
 
-  renderList(list) {
+  function renderList(list) {
     return list.map((item) => (
       <li
         key={item._id}
@@ -32,38 +32,33 @@ class TodoList extends React.Component {
             : "todo-list_li--incomplete"
         }
         onClick={() => {
-          this.OnToggleTodoItem(item._id);
+          OnToggleTodoItem(item._id);
         }}
       >
         {item.todoContent}
       </li>
     ));
   }
-  render() {
-    return (
-      <div className="todo-list">
-        <ul>
-          {this.renderList(
-            getTodoListFromSelection(
-              // this.props.todoList,
-              this.props.list,
-              this.props.visibility,
-              this.props.groupSelected.toString()
-            )
-          )}
-        </ul>
-      </div>
-    );
-  }
-}
 
-// const mapDispatchToProps = { toggleTodoItem };
+  return (
+    <div className="todo-list">
+      <ul>
+        {renderList(
+          getTodoListFromSelection(
+            // this.props.todoList,
+            props.list,
+            props.visibility,
+            selectedGroupId
+          )
+        )}
+      </ul>
+    </div>
+  );
+}
 
 function mapStateToProps(state) {
   return {
-    todoList: state.todoList,
     visibility: state.visibility,
-    groupSelected: state.groupSelected,
   };
 }
 
