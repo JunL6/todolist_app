@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
+import Header from "./Header";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import StartPage from "./StartPage";
@@ -18,9 +19,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/" exact component={StartPage} />
+        <Route component={Header} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/" exact component={StartPage} />
         <PrivateRoute path="/app" component={Main} />
       </div>
     );

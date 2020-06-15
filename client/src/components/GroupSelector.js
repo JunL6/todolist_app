@@ -15,6 +15,7 @@ export default function GroupSelector(props) {
     SelectedGroupContext
   );
 
+  /* I am not sure if I should move this useEffect logic to Main.js */
   useEffect(() => {
     if (!selectedGroupId && props.groups.length > 0) {
       setSelectedGroupId(props.groups[0]._id);

@@ -1,0 +1,8 @@
+.login {
+  height: 100vh;
+}
+
+.login-form-container {
+  min-width: 300px;
+  max-width: 400px;
+}

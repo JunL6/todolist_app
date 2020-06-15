@@ -1,15 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import logo from "../img/Todoie_logo.svg";
 
 export default (props) => {
   return (
-    <div>
-      Start Page
-      <h3>Welcome to Todoie!</h3>
-      <div>
-        <Link to="/signup">Sign up</Link>
-        <Link to="/login">Log in</Link>
-      </div>
-    </div>
+    <Container fluid>
+      <Row className="justify-content-center my-5">
+        <Col xs="auto">
+          <img src={logo} width="400" height="400" />
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-3">
+        <Col xs="auto">
+          <LinkContainer to="/signup">
+            <Button variant="primary" size="lg">
+              Sign up now!
+            </Button>
+          </LinkContainer>
+        </Col>
+      </Row>
+    </Container>
   );
 };
