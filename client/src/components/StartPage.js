@@ -8,7 +8,7 @@ export default (props) => {
     <Container fluid>
       <Row className="justify-content-center my-5">
         <Col xs="auto">
-          <img src={logo} width="400" height="400" />
+          <img src={logo} width="360" height="400" />
         </Col>
       </Row>
       <Row className="justify-content-center">

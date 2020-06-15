@@ -6,6 +6,7 @@ import StatusToggle from "./StatusToggle";
 import GroupSelector from "./GroupSelector";
 import { URL_GETUSERDATA } from "../config/urls";
 import { SelectedGroupProvider } from "./SelectedGroupContext";
+import MainHeader from "./MainHeader";
 
 export default function Main(props) {
   const [userData, setUserData] = useState(null);
@@ -19,6 +20,7 @@ export default function Main(props) {
 
   return (
     <SelectedGroupProvider>
+      <MainHeader />
       <div className="container-">
         {console.log(userData ? userData.todos : [])}
         {console.log(count)}
