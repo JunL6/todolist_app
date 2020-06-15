@@ -19,7 +19,7 @@ export default function Main(props) {
 
   return (
     <SelectedGroupProvider>
-      <div className="container">
+      <div className="container-">
         {console.log(userData ? userData.todos : [])}
         {console.log(count)}
         <div className="left-lane">

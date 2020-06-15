@@ -1,4 +1,4 @@
-.login {
+.auth {
   height: 100vh;
 }
 
@@ -6,7 +6,7 @@
   text-decoration: none;
 }
 
-.login-form-container {
+.auth-form-container {
   min-width: 300px;
   max-width: 400px;
   box-shadow: 6px 6px 10px #888888;

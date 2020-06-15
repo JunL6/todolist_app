@@ -31,7 +31,7 @@ module.exports = (app) => {
     /* 2. save user if not exists */
     User.findOne({ username: username }, (err, existingUser) => {
       if (err) return next(err);
-      if (existingUser) return res.status(422).send("User name already exists");
+      if (existingUser) return res.status(409).send("User name already exists");
 
       const newUser = new User({
         username,

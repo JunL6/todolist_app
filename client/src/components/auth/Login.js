@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import {
@@ -14,7 +13,7 @@ import {
 
 import { URL_LOGIN } from "../../config/urls";
 import { authUser } from "../../actions";
-import "./Login.css";
+import "./auth.css";
 import logo from "../../img/Todoie_logo.svg";
 
 function Login(props) {
@@ -51,20 +50,8 @@ function Login(props) {
       });
   };
 
-  // const { handleSubmit } = this.props;
   return (
-    <div className="login bg-light">
-      {/* <form onSubmit={handleSubmit(this.onFormSubmit)}>
-          <fieldset>
-          <label>Email:</label>
-          <Field name="username" component="input" type="text" />
-          </fieldset>
-          <fieldset>
-          <label>Password: </label>
-          <Field name="password" component="input" type="password" />
-          </fieldset>
-          <button>Log in</button>
-        </form> */}
+    <div className="auth bg-light">
       <Container fluid>
         <Row className="pt-5 justify-content-center align-items-center">
           <Link to="/" className="d-flex align-items-end logo-link">
@@ -73,7 +60,7 @@ function Login(props) {
           </Link>
         </Row>
         <Row className="my-4 justify-content-center">
-          <Col className="login-form-container pt-3 pb-4 px-4 border rounded">
+          <Col className="auth-form-container pt-3 pb-4 px-4 border rounded">
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <h3 className="text-center text-secondary">Log in</h3>
               <Form.Group controlId="formBasicEmail">
@@ -87,9 +74,6 @@ function Login(props) {
                 <Form.Control.Feedback type="invalid">
                   Please provide a proper Email.
                 </Form.Control.Feedback>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
               </Form.Group>
               <Form.Group controlId="formBasicPassword" className="mb-4">
                 <Form.Label className="font-weight-bold">Password</Form.Label>
@@ -105,7 +89,7 @@ function Login(props) {
               </Form.Group>
 
               <Button variant="primary" type="submit" block>
-                Submit
+                Log in
               </Button>
               <div
                 className="text-danger"

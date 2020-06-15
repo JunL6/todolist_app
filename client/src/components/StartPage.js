@@ -11,11 +11,14 @@ export default (props) => {
           <img src={logo} width="400" height="400" />
         </Col>
       </Row>
+      <Row className="justify-content-center">
+        <h3>A basic todo list app.</h3>
+      </Row>
       <Row className="justify-content-center mt-3">
         <Col xs="auto">
           <LinkContainer to="/signup">
             <Button variant="primary" size="lg">
-              Sign up now!
+              Sign up for free now!
             </Button>
           </LinkContainer>
         </Col>

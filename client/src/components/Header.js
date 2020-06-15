@@ -4,10 +4,11 @@ import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 
 function Header(props) {
-  console.log(props.history.location);
+  const currentURL = props.history.location.pathname;
   if (
-    props.history.location.pathname === "/login" ||
-    props.history.location.pathname === "/signup"
+    currentURL === "/login" ||
+    currentURL === "/signup" ||
+    currentURL === "/app"
   )
     return <></>;
   else
