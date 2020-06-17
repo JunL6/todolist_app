@@ -1,21 +1,29 @@
 import React from "react";
-import { Navbar, DropdownButton, Dropdown } from "react-bootstrap";
+import { Navbar, DropdownButton, Dropdown, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 
 function MainHeader(props) {
+  function toggleSidebar() {
+    props.setIsSidebarOpen(!props.isSidebarOpen);
+  }
+
   return (
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="dark">
       <LinkContainer
         to={props.authed ? "/app" : "/"}
         style={{ color: "white" }}
       >
-        <Navbar.Brand className="mr-auto">Todoie</Navbar.Brand>
+        <Navbar.Brand>Todoie</Navbar.Brand>
       </LinkContainer>
-      {/* <Navbar.Text className="ml-auto text-light">
-        {props.authed}
-      </Navbar.Text> */}
-      <DropdownButton title={props.authed} variant="secondary">
+      <Button variant="outline-secondary" onClick={toggleSidebar}>
+        toggle
+      </Button>
+      <DropdownButton
+        className="ml-auto"
+        title={props.authed}
+        variant="secondary"
+      >
         <LinkContainer to="/api/logout">
           <Dropdown.Item>Log out</Dropdown.Item>
         </LinkContainer>

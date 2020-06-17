@@ -42,11 +42,10 @@ body {
 
 /* Group Selector */
 
+/*
 .group-selector {
   align-self: flex-center;
-  margin: 10px 0 0 40px;
   padding: 36px 0;
-  width: 280px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -62,6 +61,7 @@ body {
 }
 
 .group-selector li {
+  background-color: #2e3338;
   color: #8489a2;
 }
 
@@ -95,10 +95,13 @@ body {
   align-self: center;
 }
 
+*/
+
 /**
   modal: add group
 **/
 
+/*
 .modal-content {
   position: absolute;
   top: 50%;
@@ -112,8 +115,7 @@ body {
   padding: 10px;
   display: flex;
   flex-direction: column;
-  /* align-content: center; */
-}
+]}
 
 .modal-content header {
   align-self: flex-start;
@@ -153,6 +155,8 @@ body {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
 }
+*/
+
 /** 
   Input Bar
 **/
@@ -215,16 +219,17 @@ status toggle
 **/
 
 .status-toggle {
+  border: 1.2px solid #0f235b;
   margin-bottom: 8px;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 16px;
+  /* background-color: white; */
 }
 
 .status-toggle button {
   border: none;
   width: 120px;
   height: 40px;
-  border-radius: 8px;
+  border-radius: 16px;
   transition-timing-function: ease-in-out;
   font-size: medium;
 }

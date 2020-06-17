@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
+import { ListGroup, Button, Row, Modal } from "react-bootstrap";
+import classNames from "classnames";
+
 // import { selectGroup, addGroup } from "../actions";
-import { SelectedGroupContext } from "./SelectedGroupContext";
-import CreateGroup from "./CreateGroup";
-import { URL_ADD_GROUP } from "../config/urls";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { SelectedGroupContext } from "../SelectedGroupContext";
+import AddGroupModal from "../AddGroupModal";
+import { URL_ADD_GROUP } from "../../config/urls";
+import "./GroupSelector.css";
+// import Modal from "react-modal";
+// Modal.setAppElement("#root");
 
 export default function GroupSelector(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +17,12 @@ export default function GroupSelector(props) {
   const [selectedGroupId, setSelectedGroupId] = useContext(
     SelectedGroupContext
   );
+
+  /* */
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   /* I am not sure if I should move this useEffect logic to Main.js */
   useEffect(() => {
@@ -58,27 +67,48 @@ export default function GroupSelector(props) {
   function renderGroupList(groupList, currentGroupId) {
     return groupList.map((group) => {
       return (
-        <li
+        <ListGroup.Item
           key={group._id}
-          className={
-            group._id === currentGroupId ? "group-selector_li--selected" : null
-          }
-          onClick={() => {
-            setSelectedGroupId(group._id);
-          }}
+          className={classNames("item", {
+            "item-selected": group._id === currentGroupId,
+            "text-primary": group._id === currentGroupId,
+          })}
         >
-          {group.groupName}
-        </li>
+          <span
+            onClick={() => {
+              setSelectedGroupId(group._id);
+            }}
+          >
+            {group.groupName}
+          </span>
+        </ListGroup.Item>
       );
     });
   }
 
   return (
-    <div className="group-selector">
-      <h4>Group</h4>
-      <ul>{renderGroupList(props.groups, selectedGroupId)}</ul>
-      <CreateGroup onHandleClick={openModal} />
-      <Modal
+    <div className="group-selector mt-5">
+      <h4 className="mb-2 ml-3">Group</h4>
+      <ListGroup>{renderGroupList(props.groups, selectedGroupId)}</ListGroup>
+      <Row className="justify-content-center">
+        <Button
+          variant="secondary"
+          size="sm"
+          className="justify-content-center align-self-center align-center"
+          onClick={openModal}
+        >
+          Add group
+        </Button>
+      </Row>
+
+      <AddGroupModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        onGroupNameInputChange={onGroupNameInputChange}
+        onAddNewGroup={onAddNewGroup}
+      />
+
+      {/* <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         overlayClassName="modal-overlay"
@@ -94,10 +124,12 @@ export default function GroupSelector(props) {
             <input onChange={onGroupNameInputChange} type="text"></input>
           </form>
           <footer>
-            <button onClick={onAddNewGroup}>Add</button>
+            <Button variant="light" onClick={onAddNewGroup}>
+              Add
+            </Button>
           </footer>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

@@ -6,17 +6,24 @@ import { BrowserRouter } from "react-router-dom";
 
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
+import { fetchUser } from "./actions";
 
 import App from "./components/App";
 
-ReactDOM.render(
-  <Provider store={createStore(reducer, applyMiddleware(thunk))}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
-);
+async function getAuthState() {
+  await fetchUser();
+}
+
+getAuthState().then(() => {
+  ReactDOM.render(
+    <Provider store={createStore(reducer, applyMiddleware(thunk))}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>,
+    document.getElementById("root")
+  );
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
