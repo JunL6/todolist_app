@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { Nav, Card, Button } from "react-bootstrap";
 // import { toggleTodoItem } from "../actions";
 import { SelectedGroupContext } from "./SelectedGroupContext";
 import { URL_UPDATE_TODO } from "../config/urls";
@@ -52,6 +53,36 @@ function TodoList(props) {
           )
         )}
       </ul>
+
+      {/* <Card>
+        <Card.Header>
+          <Nav variant="pills" defaultActiveKey="#first">
+            <Nav.Item>
+              <Nav.Link href="#first">Active</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#link">Link</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="#disabled" disabled>
+                Disabled
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Card.Header>
+        <Card.Body className="p-0">
+          <ul>
+            {renderList(
+              getTodoListFromSelection(
+                // this.props.todoList,
+                props.list,
+                props.visibility,
+                selectedGroupId
+              )
+            )}
+          </ul>
+        </Card.Body>
+      </Card> */}
     </div>
   );
 }

@@ -73,14 +73,11 @@ export default function GroupSelector(props) {
             "item-selected": group._id === currentGroupId,
             "text-primary": group._id === currentGroupId,
           })}
+          onClick={() => {
+            setSelectedGroupId(group._id);
+          }}
         >
-          <span
-            onClick={() => {
-              setSelectedGroupId(group._id);
-            }}
-          >
-            {group.groupName}
-          </span>
+          <span>{group.groupName}</span>
         </ListGroup.Item>
       );
     });
@@ -89,12 +86,14 @@ export default function GroupSelector(props) {
   return (
     <div className="group-selector mt-5">
       <h4 className="mb-2 ml-3">Group</h4>
-      <ListGroup>{renderGroupList(props.groups, selectedGroupId)}</ListGroup>
+      <ListGroup className="mb-2">
+        {renderGroupList(props.groups, selectedGroupId)}
+      </ListGroup>
       <Row className="justify-content-center">
         <Button
           variant="secondary"
           size="sm"
-          className="justify-content-center align-self-center align-center"
+          className="px-3"
           onClick={openModal}
         >
           Add group

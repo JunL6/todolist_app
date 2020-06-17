@@ -219,9 +219,11 @@ status toggle
 **/
 
 .status-toggle {
-  border: 1.2px solid #0f235b;
+  border-bottom: 1.2px solid #0f235b;
+  border-left: none;
+  border-right: none;
   margin-bottom: 8px;
-  border-radius: 16px;
+  /* border-radius: 16px; */
   /* background-color: white; */
 }
 

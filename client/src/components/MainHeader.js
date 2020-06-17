@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, DropdownButton, Dropdown, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 
 function MainHeader(props) {
   function toggleSidebar() {
@@ -17,7 +19,7 @@ function MainHeader(props) {
         <Navbar.Brand>Todoie</Navbar.Brand>
       </LinkContainer>
       <Button variant="outline-secondary" onClick={toggleSidebar}>
-        toggle
+        <FontAwesomeIcon icon={faAlignLeft} />
       </Button>
       <DropdownButton
         className="ml-auto"
