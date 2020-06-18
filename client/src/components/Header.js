@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
+import "./Header.css";
 
 function Header(props) {
   const currentURL = props.history.location.pathname;
@@ -13,7 +14,7 @@ function Header(props) {
     return <></>;
   else
     return (
-      <Navbar bg="dark" expand="lg">
+      <Navbar className="header transparent" expand="lg">
         <LinkContainer
           to={props.authed ? "/app" : "/"}
           style={{ color: "white" }}
@@ -21,7 +22,7 @@ function Header(props) {
           <Navbar.Brand className="mr-auto">Todoie</Navbar.Brand>
         </LinkContainer>
         <LinkContainer to="/login">
-          <Button variant="outline-light" className="mr-2">
+          <Button variant="light" className="mr-2">
             Log in
           </Button>
         </LinkContainer>

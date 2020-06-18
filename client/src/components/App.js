@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
-import StartPage from "./StartPage";
+import LandingPage from "./LandingPage/LandingPage";
 import Main from "./Main";
 import "./App.css";
 import { fetchUser } from "../actions";
@@ -22,7 +22,7 @@ class App extends React.Component {
         <Route component={Header} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/" exact component={StartPage} />
+        <Route path="/" exact component={LandingPage} />
         <PrivateRoute path="/app" component={Main} />
       </div>
     );

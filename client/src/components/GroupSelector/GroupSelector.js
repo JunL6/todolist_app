@@ -85,7 +85,7 @@ export default function GroupSelector(props) {
 
   return (
     <div className="group-selector mt-5">
-      <h4 className="mb-2 ml-3">Group</h4>
+      <h4 className="mb-3 ml-3">Groups</h4>
       <ListGroup className="mb-2">
         {renderGroupList(props.groups, selectedGroupId)}
       </ListGroup>
@@ -93,7 +93,7 @@ export default function GroupSelector(props) {
         <Button
           variant="secondary"
           size="sm"
-          className="px-3"
+          className="mt-3"
           onClick={openModal}
         >
           Add group
