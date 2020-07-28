@@ -4,10 +4,24 @@ import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import { URL_LOGOUT } from '../config/urls';
 
 function MainHeader(props) {
+
+  let history = useHistory();
+
+
   function toggleSidebar() {
     props.setIsSidebarOpen(!props.isSidebarOpen);
+  }
+
+  function logoutClick(){
+    axios.get(URL_LOGOUT)
+    .then(()=>{
+      history.push('/');
+    })
   }
 
   return (
@@ -24,11 +38,8 @@ function MainHeader(props) {
       <DropdownButton
         className="ml-auto"
         title={props.authed}
-        variant="secondary"
-      >
-        <LinkContainer to="/api/logout">
-          <Dropdown.Item>Log out</Dropdown.Item>
-        </LinkContainer>
+        variant="secondary">      
+          <Dropdown.Item  onClick={logoutClick}>Log out</Dropdown.Item>
       </DropdownButton>
     </Navbar>
   );

@@ -1,6 +1,9 @@
-export const URL_FETCH_USER = "/api/current_user";
-export const URL_LOGIN = "/api/login";
-export const URL_SIGNUP = "/api/signup";
-export const URL_GETUSERDATA = "/api/getUserData";
-export const URL_UPDATE_TODO = "/api/updateTodo";
-export const URL_ADD_GROUP = "/api/addGroup";
+var endpointRoot = 'https://todoie.herokuapp.com';
+// endpointRoot = '';
+export const URL_FETCH_USER = endpointRoot+"/api/current_user";
+export const URL_LOGIN = endpointRoot+"/api/login";
+export const URL_LOGOUT = endpointRoot+"/api/logout";
+export const URL_SIGNUP = endpointRoot+"/api/signup";
+export const URL_GETUSERDATA =endpointRoot+ "/api/getUserData";
+export const URL_UPDATE_TODO =endpointRoot+ "/api/updateTodo";
+export const URL_ADD_GROUP = endpointRoot+"/api/addGroup";
