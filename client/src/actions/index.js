@@ -18,10 +18,13 @@ export function fetchUser() {
   return (dispatch) => {
     axios
       .get(URL_FETCH_USER)
-      .then((response) => {
-        console.log(response);
-        dispatch({ type: FETCH_USER, payload: response.data.username });
-      })
+      .then(
+        (response) => {
+          console.log(response);
+          dispatch({ type: FETCH_USER, payload: response.data.username });
+        },
+        { withCredentials: true }
+      )
       .catch((err) => console.error(err));
   };
 }

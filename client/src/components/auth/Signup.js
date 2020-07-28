@@ -34,7 +34,7 @@ function Signup(props) {
 
     const formProps = { username, password };
     axios
-      .post(URL_SIGNUP, formProps)
+      .post(URL_SIGNUP, formProps, { withCredentials: true })
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -60,22 +60,6 @@ function Signup(props) {
   }
 
   return (
-    // <div>
-    //   <Link to="/">Todoie</Link>
-    //   <div>Sign up</div>
-    //   <form onSubmit={handleSubmit(this.onFormSubmit)}>
-    //     <fieldset>
-    //       <label>Email:</label>
-    //       <Field name="username" component="input" type="text" />
-    //     </fieldset>
-    //     <fieldset>
-    //       <label>Password: </label>
-    //       <Field name="password" component="input" type="password" />
-    //     </fieldset>
-    //     <button>Sign up</button>
-    //   </form>
-    //   <div>todo: error message</div>
-    // </div>
     <div className="auth bg-light">
       <Container fluid>
         <Row className="pt-5 justify-content-center align-items-center">
@@ -119,7 +103,7 @@ function Signup(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Button variant="primary" type="submit" block>
+              <Button variant="info" type="submit" block>
                 Sign up
               </Button>
               <div

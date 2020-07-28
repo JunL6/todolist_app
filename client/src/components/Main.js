@@ -17,7 +17,7 @@ export default function Main(props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
-    axios.get(URL_GETUSERDATA).then((response) => {
+    axios.get(URL_GETUSERDATA, { withCredentials: true }).then((response) => {
       setUserData(response.data);
     });
   }, [count]);

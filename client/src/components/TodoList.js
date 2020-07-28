@@ -14,10 +14,14 @@ function TodoList(props) {
 
   function OnToggleTodoItem(todoId) {
     axios
-      .post(URL_UPDATE_TODO, {
-        todoId,
-        isToggled: true,
-      })
+      .post(
+        URL_UPDATE_TODO,
+        {
+          todoId,
+          isToggled: true,
+        },
+        { withCredentials: true }
+      )
       .then((response) => {
         props.setCount((prevCount) => prevCount + 1);
       });

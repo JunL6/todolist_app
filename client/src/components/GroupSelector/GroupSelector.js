@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { ListGroup, Button, Row, Modal } from "react-bootstrap";
+import { ListGroup, Button, Row } from "react-bootstrap";
 import classNames from "classnames";
 
 // import { selectGroup, addGroup } from "../actions";

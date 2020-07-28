@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { InputGroup, FormControl, Button, Form, Row } from "react-bootstrap";
+import { FormControl, Button, Form, Row } from "react-bootstrap";
 import { SelectedGroupContext } from "./SelectedGroupContext";
+import { URL_INSERT_TODO } from "../config/urls";
 
 function InputBar(props) {
   // constructor(props) {
@@ -38,11 +39,15 @@ function InputBar(props) {
 
   function insertTodo(todoContent) {
     axios
-      .post("/api/insertTodo", {
-        groupId: selectedGroupId,
-        todoContent,
-        createdTime: new Date(),
-      })
+      .post(
+        URL_INSERT_TODO,
+        {
+          groupId: selectedGroupId,
+          todoContent,
+          createdTime: new Date(),
+        },
+        { withCredentials: true }
+      )
       .then(() => {
         props.setCount((prevCount) => prevCount + 1);
       });

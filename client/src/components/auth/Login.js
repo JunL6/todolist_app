@@ -33,7 +33,7 @@ function Login(props) {
     event.preventDefault();
     const formProps = { username, password };
     axios
-      .post(URL_LOGIN, formProps)
+      .post(URL_LOGIN, formProps, { withCredentials: true })
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -88,7 +88,7 @@ function Login(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Button variant="primary" type="submit" block>
+              <Button variant="info" type="submit" block>
                 Log in
               </Button>
               <div
