@@ -10,20 +10,22 @@ import { fetchUser } from "./actions";
 
 import App from "./components/App";
 
-async function getAuthState() {
-  await fetchUser();
-}
+// async function getAuthState() {
+//   await fetchUser();
+// }
+// /*  why did we use these functions? */
+// getAuthState().then(() => {
 
-getAuthState().then(() => {
-  ReactDOM.render(
-    <Provider store={createStore(reducer, applyMiddleware(thunk))}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
-    document.getElementById("root")
-  );
-});
+// });
+
+ReactDOM.render(
+  <Provider store={createStore(reducer, applyMiddleware(thunk))}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

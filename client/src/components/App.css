@@ -223,8 +223,6 @@ status toggle
   border-left: none;
   border-right: none;
   margin-bottom: 8px;
-  /* border-radius: 16px; */
-  /* background-color: white; */
 }
 
 .status-toggle button {
@@ -242,7 +240,7 @@ status toggle
 
 .status-toggle button:hover {
   transform: scale(1.1);
-  background-color: #0f235b;
+  background-color: #6f7a83;
   color: white;
   cursor: pointer;
 }
@@ -258,7 +256,8 @@ status toggle
 
 .status-toggle_button--selected {
   box-shadow: 6px 4px 10px 4px rgba(94, 87, 89, 0.1);
-  background-color: #0f235b;
+  /* background-color: #0f235b; */
+  background-color: #6f7a83;
   color: white;
 }
 
