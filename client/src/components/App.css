@@ -240,7 +240,7 @@ status toggle
 
 .status-toggle button:hover {
   transform: scale(1.1);
-  background-color: #6f7a83;
+  background-color: #6f7a83aa;
   color: white;
   cursor: pointer;
 }
