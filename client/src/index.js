@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
@@ -20,9 +20,9 @@ import App from "./components/App";
 
 ReactDOM.render(
   <Provider store={createStore(reducer, applyMiddleware(thunk))}>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </Provider>,
   document.getElementById("root")
 );
