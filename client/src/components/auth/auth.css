@@ -1,13 +1,34 @@
 .auth {
-  height: 100vh;
+	height: 100vh;
+}
+
+.auth .background-img {
+	margin: 0;
+	padding: 0;
+	/* height: 100vh; */
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	/* background-image: url("../../img/landingpage-background.jpg"); */
+	/* background-size: cover; */
+	/* background-color: grey; */
+	position: absolute;
+	top: 0;
+	filter: blur(4px);
+	z-index: -99;
 }
 
 .logo-link:hover {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .auth-form-container {
-  min-width: 300px;
-  max-width: 400px;
-  box-shadow: 6px 6px 10px #888888;
+	min-width: 300px;
+	max-width: 400px;
+	box-shadow: 6px 6px 10px #888888;
+}
+
+.svg-filter {
+	filter: invert(98%) sepia(12%) saturate(143%) hue-rotate(174deg)
+		brightness(98%) contrast(100%);
 }
