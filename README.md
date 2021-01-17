@@ -1,4 +1,5 @@
 # Todoie
+Deployed on Heroku: https://todoie.herokuapp.com/ (heroku free tier, so it takes a bit long to response)
 ## Another Todo list app :)
 ### Features:
 1. Authentication using [PassportJs](https://github.com/jaredhanson/passport) and [Bcrypt](https://github.com/kelektiv/node.bcrypt.js#readme)
